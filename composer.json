@@ -14,7 +14,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "cfortune\\PHPBounceHandler\\": "src"
+            "cfortune\\PHPBounceHandler\\": "src/"
         }
     }
 }
