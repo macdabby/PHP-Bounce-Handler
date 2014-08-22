@@ -5,6 +5,7 @@
     "keywords": ["php", "bounce", "email", "mail"],
     "homepage": "https://github.com/cfortune/PHP-Bounce-Handler/",
     "license": "BSD",
+    "version": "7.3",
     "authors": [
         {
             "name": "Chris Fortune",
