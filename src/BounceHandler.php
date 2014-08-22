@@ -19,7 +19,7 @@
     * Scott Brynen - FBL development  http://visioncritical.com
 */
 
-namespace cfortune\PHPBounceHandler
+namespace cfortune\PHPBounceHandler;
 
 class BounceHandler {
 
