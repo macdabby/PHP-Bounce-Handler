@@ -4,8 +4,9 @@
 
 <?php
 //error_reporting(E_ALL);
-require_once("bounce_driver.class.php");
-$bouncehandler = new Bouncehandler();
+use namespace cfortune\PHPBounceHandler\BounceHandler;
+
+$bouncehandler = new BounceHandler();
 
 if(!empty($_GET['testall'])){
     $files = get_sorted_file_list('eml');
@@ -42,7 +43,7 @@ July 4, 2013
 </P>
 <P>
 Replaced deprecated split() function.
-Added auto-responder identification filter.  
+Added auto-responder identification filter.
 Suppressed php Notice errors.
 <P>
 <HR>

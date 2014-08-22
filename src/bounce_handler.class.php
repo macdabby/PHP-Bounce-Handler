@@ -23,12 +23,10 @@ namespace cfortune\PHPBounceHandler
 
 class BounceHandler {
 
-    /**** VARS ****************************************************************/
+    // Properties
     public $head_hash = array();
     public $fbl_hash = array();
     public $body_hash = array(); // not necessary
-    public $bouncelist = array(); // from bounce_responses.txt
-    public $autorespondlist = array(); // from bounce_responses.txt
 
     public $looks_like_a_bounce = false;
     public $looks_like_an_FBL = false;
@@ -61,7 +59,7 @@ class BounceHandler {
     // the raw data set, a multiArray
     public $output = array();
 
-    public static $bouncelist = array(
+    public $bouncelist = array(
         '[45]\d\d[- ]#?([45]\.\d\.\d)'                              => 'x',         # use the code from the regex
         'Diagnostic[- ][Cc]ode: smtp; ?\d\d\ ([45]\.\d\.\d)'        => 'x',         # use the code from the regex
         'Status: ([45]\.\d\.\d)'                                    => 'x',         # use the code from the regex
@@ -276,7 +274,7 @@ class BounceHandler {
         'Your message was declared Spam'                            => '5.7.1'      #
     );
 
-    public static $autorespondlist = array(
+    public $autorespondlist = array(
         '^\[?auto.{0,20}reply\]?',
         '^auto-?response',
         '^auto response',
@@ -557,9 +555,6 @@ class BounceHandler {
         $this->output[0]['action']  = "";
         $this->output[0]['status']  = "";
         $this->output[0]['recipient'] = "";
-        include_once('bounce_responses.php');
-        $this->bouncelist = $bouncelist;
-        $this->autorespondlist = $autorespondlist;
     }
 
 
@@ -1059,11 +1054,14 @@ class BounceHandler {
     }
 
     function fetch_status_messages($code){
-        include_once ("rfc1893.error.codes.php");
         $ret = $this->format_status_code($code);
         $arr = explode('.', $ret['code']);
-        $str = "<P><B>". $status_code_classes[$arr[0]]['title'] . "</B> - " .$status_code_classes[$arr[0]]['descr']. "  <B>". $status_code_subclasses[$arr[1].".".$arr[2]]['title'] . "</B> - " .$status_code_subclasses[$arr[1].".".$arr[2]]['descr']. "</P>";
-        return $str;
+
+        $return_array = array();
+        $return_array['status_code_info'] =  self::$status_code_classes[$arr[0]];
+        $return_array['status_code_sub_info'] =  self::$status_code_subclasses[$arr[1] . "." . $arr[2]];
+
+        return $return_array;
     }
 
     function get_action_from_status_code($code){
