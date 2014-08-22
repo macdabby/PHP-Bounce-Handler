@@ -1,13 +1,13 @@
 {
     "name": "cfortune/php-bounce-handler",
     "type": "library",
-    "description": "PHP Bounce Handler",
+    "description": "Chops up bounce notifications into associative arrays",
     "keywords": ["php", "bounce", "email", "mail"],
     "homepage": "https://github.com/cfortune/PHP-Bounce-Handler/",
-    "license": "MIT",
+    "license": "BSD",
     "authors": [
         {
-            "name": "cfortune",
+            "name": "Chris Fortune",
             "role": "Developer"
         }
     ],
