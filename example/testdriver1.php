@@ -4,7 +4,9 @@
 
 <?php
 //error_reporting(E_ALL);
-use namespace cfortune\PHPBounceHandler\BounceHandler;
+use cfortune\PHPBounceHandler\BounceHandler;
+
+require_once(__DIR__ . '/../src/BounceHandler.php');
 
 $bouncehandler = new BounceHandler();
 
