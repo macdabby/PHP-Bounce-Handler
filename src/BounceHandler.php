@@ -675,10 +675,10 @@ class BounceHandler {
         data (Unlike Multipart-reports, FBL's report only one bounce)
         */
         $this->type = $this->find_type();
-        $this->action = $this->output[0]['action'];
-        $this->status = $this->output[0]['status'];
+        $this->action = isset($this->output[0]['action']) ? $this->output[0]['action'] : '';
+        $this->status = isset($this->output[0]['status']) ? $this->output[0]['status'] : '';
         $this->subject = ($this->subject) ? $this->subject : $this->head_hash['Subject'];
-        $this->recipient = $this->output[0]['recipient'];
+        $this->recipient = isset($this->output[0]['recipient']) ? $this->output[0]['recipient'] : '';
         $this->feedback_type = @($this->fbl_hash['Feedback-type']) ? $this->fbl_hash['Feedback-type'] : "";
 
         // sniff out any web beacons
@@ -874,7 +874,7 @@ class BounceHandler {
         }
         // special formatting
         $hash['Received']= @explode('|', $hash['Received']);
-        $hash['Subject'] = iconv_mime_decode($hash['Subject'], 0, "ISO-8859-1");
+        $hash['Subject'] = isset($hash['Subject']) ? iconv_mime_decode($hash['Subject'], 0, "ISO-8859-1") : '';
 
         return $hash;
     }
