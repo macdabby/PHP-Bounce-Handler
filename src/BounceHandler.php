@@ -970,6 +970,11 @@ class BounceHandler {
         if(!is_array($dsn_fields)) $dsn_fields = explode("\r\n\r\n", $dsn_fields);
         $j = 0;
         reset($dsn_fields);
+        $hash = array(
+            'mime_header' => array(),
+            'per_message' => array(),
+            'per_recipient' => array(),
+        );
         for($i=0; $i<count($dsn_fields); $i++){
             $dsn_fields[$i] = trim($dsn_fields[$i]);
             if($i==0)
